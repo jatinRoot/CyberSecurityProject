@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encrypt/Decrypt Text</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            margin-top: 0;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            resize: none;
+        }
+        input[type="text"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .output {
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #e9ecef;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Encrypt/Decrypt Text</h1>
+        <textarea id="inputText" placeholder="Enter text to encrypt"></textarea>
+        <input type="text" id="password" placeholder="Enter password">
+        <button onclick="encryptText()">Encrypt</button>
+        <button onclick="decryptText()">Decrypt</button>
+        <div class="output" id="output"></div>
+    </div>
+
+    <script>
+        function encryptText() {
+            const inputText = document.getElementById('inputText').value;
+            const password = document.getElementById('password').value;
+            if (inputText === '' || password === '') {
+                alert('Please enter both text and password');
+                return;
+            }
+
+            const iv = CryptoJS.lib.WordArray.random(16);
+            const encrypted = CryptoJS.AES.encrypt(inputText, CryptoJS.PBKDF2(password, iv, { keySize: 256/32, iterations: 1000 }), {
+                iv: iv,
+                padding: CryptoJS.pad.Pkcs7,
+                mode: CryptoJS.mode.CBC
+            });
+
+            const encryptedText = iv.toString(CryptoJS.enc.Base64) + encrypted.toString();
+            document.getElementById('output').innerText = 'Encrypted Text: ' + encryptedText;
+        }
+
+        function decryptText() {
+            const inputText = document.getElementById('inputText').value;
+            const password = document.getElementById('password').value;
+            if (inputText === '' || password === '') {
+                alert('Please enter both encrypted text and password');
+                return;
+            }
+
+            const iv = CryptoJS.enc.Base64.parse(inputText.substring(0, 24));
+            const encryptedText = inputText.substring(24);
+            const decrypted = CryptoJS.AES.decrypt(encryptedText, CryptoJS.PBKDF2(password, iv, { keySize: 256/32, iterations: 1000 }), {
+                iv: iv,
+                padding: CryptoJS.pad.Pkcs7,
+                mode: CryptoJS.mode.CBC
+            });
+
+            const decryptedText = decrypted.toString(CryptoJS.enc.Utf8);
+            document.getElementById('output').innerText = 'Decrypted Text: ' + decryptedText;
+        }
+    </script>
+</body>
+</html>
