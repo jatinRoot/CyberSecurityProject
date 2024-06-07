@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Keylogger Example</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #282c34;
+            color: #61dafb;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        #logContainer {
+            width: 90%;
+            max-width: 700px;
+            background: #20232a;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            overflow-y: auto;
+            max-height: 400px;
+        }
+
+        h2 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        #keystrokes {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            background: #282c34;
+            color: #61dafb;
+            padding: 10px;
+            border: 1px solid #61dafb;
+            border-radius: 5px;
+            min-height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Keylogger Example</h1>
+    <div id="logContainer">
+        <h2>Keystrokes:</h2>
+        <pre id="keystrokes"></pre>
+    </div>
+    <script>
+        document.addEventListener('keydown', function(event) {
+            const keystrokesElement = document.getElementById('keystrokes');
+            const key = event.key === ' ' ? '[Space]' : event.key;
+            const log = keystrokesElement.innerText;
+
+            // Update the log with the new keystroke
+            keystrokesElement.innerText = log + key;
+        });
+    </script>
+</body>
+</html>
