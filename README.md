@@ -50,3 +50,52 @@ The JavaScript part listens for any keypresses, captures them, and updates the d
 
 
 
+Task 3 Secure Image Encryption and Decryption Web App for Privacy Protection
+
+Introduction:
+Introducing a secure and user-friendly web application that allows you to encrypt and decrypt images using a simple encryption key. This tool is built with HTML, CSS, and JavaScript, ensuring that your images remain safe and secure while being shared online.
+
+How It Works:
+
+1. Upload Image: Simply select an image file from your computer.
+2. Enter Key: Provide an encryption key (password) for encrypting and decrypting the image.
+3. Encrypt: The app encrypts the image using the key, displaying the encrypted version.
+4. Decrypt: Easily decrypt the image back to its original form using the same key.
+
+How to Use:
+
+1. Select an Image: Click on "Choose File" to upload an image.
+2. Enter an Encryption Key: Type in a password for encryption.
+3. Encrypt the Image: Click "Encrypt" to view the encrypted image.
+4. Decrypt the Image: Click "Decrypt" to revert the image to its original form.
+
+Key Features:
+
+* Single Page Application for ease of use
+* Responsive Design for compatibility across all devices
+* Simple Encryption using XOR operation for efficiency
+* Secure: Encrypted image cannot be decrypted without the correct key
+
+Benefits of Using This App:
+
+1. Privacy Protection: Safeguard your images by encrypting them before sharing.
+2. User-Friendly: No technical expertise required for encryption and decryption.
+3. Efficient Process: Quick and secure encryption and decryption.
+
+Conclusion:
+This user-friendly web application provides a simple yet effective way to protect your images with encryption. Start exploring the basics of cybersecurity and cryptography by securely encrypting and decrypting your images today.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
