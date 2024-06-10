@@ -1,5 +1,5 @@
 # CyberSecurityProject
-Task 1
+Task 1 Encrypt/Decrypt Text
 Summary of the Project
 This project shows a basic Web app for encrypt and decrypt text with they used AeS encryption with a random initial vector(IV). It is a full-blown application that has been crammed into one HTML file by HTML, CSS, JavaScript.
 
