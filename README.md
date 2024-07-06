@@ -116,6 +116,20 @@ This setup provides a simple and effective facial authentication system.
 
 
 
+Task 5 Credit Card Encryption and Decryption
+
+The Credit Card Encryption and Decryption project aims to provide a secure and intuitive web-based application for encrypting and decrypting 16-digit credit card numbers using basic Base64 encoding techniques. Implemented using HTML, CSS, and JavaScript, the application ensures user input validation and clear visual feedback through styled buttons and alert messages.
+
+Implementation Details:
+
+Technologies Used: HTML for structure, CSS for styling, and JavaScript for functionality.
+Functionality: Users input a 16-digit credit card number, which is then encrypted and decrypted using simple Base64 encoding methods.
+User Experience: Buttons for encryption and decryption are styled in bold blue text for clarity and visual appeal. Alerts prompt users to input valid credit card numbers or perform necessary actions.
+This project not only demonstrates foundational web development skills but also emphasizes security principles through access control management and cryptographic techniques, essential in safeguarding sensitive data in digital transactions.
+
+This report encapsulates the project's objectives, technologies used, functionality, user experience, and its significance in reinforcing cybersecurity principles in digital applications.
+
+
 
 
 
