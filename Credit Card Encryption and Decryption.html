@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Card Encryption and Decryption</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        input, button {
+            margin: 10px;
+            padding: 10px;
+            font-size: 1rem;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+        }
+        button {
+            cursor: pointer;
+            background-color: #007bff; /* Blue color for buttons */
+            color: white;
+            border: none;
+            transition: background-color 0.3s ease;
+            font-weight: bold; /* Bold text for buttons */
+        }
+        button:hover {
+            background-color: #0056b3; /* Darker shade of blue on hover */
+        }
+        .result-container {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            width: 80%;
+            max-width: 600px;
+        }
+        .encrypt-result {
+            background-color: #cce5ff;
+        }
+        .decrypt-result {
+            background-color: #ffffcc;
+        }
+        .result-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #555;
+            margin-bottom: 5px;
+        }
+        .result-text {
+            font-size: 1.1rem;
+            color: #333;
+            word-break: break-all;
+        }
+        .alert {
+            color: #007bff; /* Blue color for alert messages */
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Credit Card Encryption and Decryption</h1>
+    <input type="text" id="creditCard" placeholder="Enter CreditCard number" />
+    <br>
+    <button onclick="encrypt()">Encrypt</button>
+    <button onclick="decrypt()">Decrypt</button>
+    <div class="result-container encrypt-result" id="encryptResult">
+        <div class="result-title">Encrypted:</div>
+        <div class="result-text" id="encryptedText"></div>
+    </div>
+    <div class="result-container decrypt-result" id="decryptResult">
+        <div class="result-title">Decrypted:</div>
+        <div class="result-text" id="decryptedText"></div>
+    </div>
+
+    <script>
+        const key = 'encryptionkey123'; // Simple key for demonstration purposes
+
+        function encrypt() {
+            const ccNumber = document.getElementById('creditCard').value.trim();
+            if (ccNumber.length !== 16 || isNaN(ccNumber)) {
+                showAlert('Please enter a valid 16-digit credit card number.');
+                return;
+            }
+            const encrypted = btoa(ccNumber); // Simple Base64 encryption
+            document.getElementById('encryptResult').style.display = 'block';
+            document.getElementById('decryptResult').style.display = 'none';
+            document.getElementById('encryptedText').innerText = encrypted;
+            document.getElementById('decryptedText').innerText = ''; // Clear decryption result
+        }
+
+        function decrypt() {
+            const encryptedText = document.getElementById('encryptedText').innerText.trim();
+            if (!encryptedText) {
+                showAlert('Please encrypt a valid credit card number first.');
+                return;
+            }
+            const decrypted = atob(encryptedText); // Simple Base64 decryption
+            document.getElementById('decryptResult').style.display = 'block';
+            document.getElementById('encryptResult').style.display = 'none';
+            document.getElementById('decryptedText').innerText = decrypted;
+            document.getElementById('encryptedText').innerText = ''; // Clear encryption result
+        }
+
+        function showAlert(message) {
+            alert(message);
+        }
+    </script>
+</body>
+</html>
