@@ -92,6 +92,48 @@ This user-friendly web application provides a simple yet effective way to protec
 
 
 
+Task 4 Web-Based Facial Authentication System Report
+
+The web-based facial authentication system uses HTML, CSS, and JavaScript, leveraging face-api.js for face detection and recognition. The system accesses the webcam to detect faces and display them on a webpage, serving as a foundation for applications such as user authentication in meetings and exams.
+
+Project Setup
+The project directory includes index.html and a models folder with pre-trained face-api.js models. The necessary libraries, TensorFlow.js and face-api.js, are loaded via CDN.
+
+HTML and CSS
+The HTML file (index.html) contains a video element for the webcam feed. Basic CSS styles center the video on the page.
+
+JavaScript
+JavaScript loads face detection models, accesses the webcam, and performs face detection. Detected faces and landmarks are drawn on a canvas overlay.
+
+Running the Application
+Start a local server (e.g., python -m http.server).
+Access the web app at http://localhost:8000/.
+This setup provides a simple and effective facial authentication system.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
