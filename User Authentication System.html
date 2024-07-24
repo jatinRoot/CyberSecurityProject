@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Authentication System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 320px;
+            text-align: center;
+        }
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        input[type="text"], input[type="password"], input[type="email"], input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .alert {
+            color: blue;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .hidden {
+            display: none;
+        }
+        a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<div id="authContainer" class="container">
+    <h2>Register</h2>
+    <input type="text" id="regUsername" placeholder="Username" required>
+    <input type="email" id="regEmail" placeholder="Email" required>
+    <input type="password" id="regPassword" placeholder="Password" required>
+    <input type="password" id="regConfirmPassword" placeholder="Confirm Password" required>
+    <button onclick="register()">Register</button>
+    <p id="registerAlert" class="alert hidden">Registration Alert</p>
+    <p>Already have an account? <a href="javascript:switchToLogin()">Login</a></p>
+</div>
+
+<div id="loginContainer" class="container hidden">
+    <h2>Login</h2>
+    <input type="text" id="loginUsername" placeholder="Username" required>
+    <input type="password" id="loginPassword" placeholder="Password" required>
+    <button onclick="login()">Login</button>
+    <p id="loginAlert" class="alert hidden">Login Alert</p>
+    <p>Don't have an account? <a href="javascript:switchToRegister()">Register</a></p>
+</div>
+
+<div id="mfaContainer" class="container hidden">
+    <h2>Two-Step Verification</h2>
+    <p>A verification code has been sent to your email.</p>
+    <input type="number" id="mfaCode" placeholder="Enter verification code" required>
+    <button onclick="verifyMFA()">Verify</button>
+    <p id="mfaAlert" class="alert hidden">MFA Alert</p>
+</div>
+
+<script>
+    let generatedCode;
+
+    function switchToLogin() {
+        document.getElementById('authContainer').classList.add('hidden');
+        document.getElementById('loginContainer').classList.remove('hidden');
+        document.getElementById('registerAlert').classList.add('hidden');
+    }
+
+    function switchToRegister() {
+        document.getElementById('loginContainer').classList.add('hidden');
+        document.getElementById('authContainer').classList.remove('hidden');
+        document.getElementById('loginAlert').classList.add('hidden');
+    }
+
+    function register() {
+        const username = document.getElementById('regUsername').value;
+        const email = document.getElementById('regEmail').value;
+        const password = document.getElementById('regPassword').value;
+        const confirmPassword = document.getElementById('regConfirmPassword').value;
+
+        if (!username || !email || !password || !confirmPassword) {
+            displayAlert('registerAlert', 'All fields are required.');
+            return;
+        }
+
+        if (password !== confirmPassword) {
+            displayAlert('registerAlert', 'Passwords do not match.');
+            return;
+        }
+
+        // Simulate registration success
+        displayAlert('registerAlert', 'Registration successful! Please log in.');
+    }
+
+    function login() {
+        const username = document.getElementById('loginUsername').value;
+        const password = document.getElementById('loginPassword').value;
+
+        if (!username || !password) {
+            displayAlert('loginAlert', 'Both fields are required.');
+            return;
+        }
+
+        // Simulate login success
+        switchToMFA();
+    }
+
+    function switchToMFA() {
+        document.getElementById('loginContainer').classList.add('hidden');
+        document.getElementById('mfaContainer').classList.remove('hidden');
+        document.getElementById('loginAlert').classList.add('hidden');
+
+        // Generate and "send" a verification code
+        generatedCode = Math.floor(100000 + Math.random() * 900000); // 6-digit code
+        console.log("Generated MFA Code:", generatedCode); // For testing purposes
+        // In real implementation, send this code via email or SMS
+    }
+
+    function verifyMFA() {
+        const mfaCode = document.getElementById('mfaCode').value;
+
+        if (!mfaCode) {
+            displayAlert('mfaAlert', 'Verification code is required.');
+            return;
+        }
+
+        if (parseInt(mfaCode) !== generatedCode) {
+            displayAlert('mfaAlert', 'Invalid verification code.');
+            return;
+        }
+
+        // Simulate MFA success
+        displayAlert('mfaAlert', 'MFA successful! You are logged in.');
+    }
+
+    function displayAlert(elementId, message) {
+        const alertElement = document.getElementById(elementId);
+        alertElement.innerText = message;
+        alertElement.classList.remove('hidden');
+    }
+</script>
+
+</body>
+</html>
