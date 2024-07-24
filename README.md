@@ -134,6 +134,32 @@ This report encapsulates the project's objectives, technologies used, functional
 
 
 
+Task 6 Project Report: User Authentication System
+Objective:
+Develop a user authentication system incorporating registration, login, and multi-factor authentication (MFA) using HTML, CSS, and JavaScript. The system aims to enhance security and provide a user-friendly interface.
+
+Features:
+
+Registration Form: Collects user details including username, email, and password with validation checks.
+Login Form: Allows users to access their accounts after registration.
+Multi-Factor Authentication: Simulates a verification process by generating a 6-digit code sent to the user. The user must enter this code to complete the login.
+Implementation Details:
+
+HTML/CSS: Provides a clean and responsive design for user interaction.
+JavaScript: Handles form validation, MFA code generation, and input alerts.
+Outcome:
+This project demonstrates a robust approach to user authentication, showcasing skills in front-end development and security practices. It serves as a comprehensive example of integrating design and functionality with essential cybersecurity measures. The system is ready for further integration into more extensive applications.
+
+
+
+
+
+
+
+
+
+
+
 
 
 
